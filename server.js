@@ -1,20 +1,27 @@
-const http = require('http');
-const fs = require('fs');
+let print = (...args) => console.log(...args);
+
+/////////////////////////////////////////////////////
+const express = require('express'); 
+const app = express();
+const server = require('http').Server(app);
+const ss = require('socket.io-stream');
+const io = require('socket.io')(server);
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 const port = 8888;
 
-// Загружаем файл index.html и отображаем его клиенту
-const server = http.createServer((req, res) => {
-    res.writeHead(200, { 'content-type': 'text/html' })
-    fs.createReadStream('./resources/index.html').pipe(res)
-});
+server.listen(port);
 
-// Загружаем socket.io
-const io = require('socket.io')(server);
+/*attaches static files to page*/
+app.use(express.static(__dirname + "/resources"));
+/*******************************/
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/resources/index.html');
+});
 
 // Когда клиент соединяется, выводим сообщение в консоль
 io.sockets.on('connection', function (socket) {
-    console.log('A client is connected!');
+    print('A client is connected!');
 });
-
-
-server.listen(port);

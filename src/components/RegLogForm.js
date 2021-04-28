@@ -11,8 +11,6 @@ class RegLogForm extends Component {
         this.state = { login: '', password: '', message: '', status: 0};
         this.onChangeLogin = this.onChangeLogin.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleButtonClick = this.handleButtonClick.bind(this);
     }
 
     onChangeLogin(e){
@@ -32,8 +30,8 @@ class RegLogForm extends Component {
                 <input type="text" value={this.state.login} onChange={this.onChangeLogin} /><br />
                 <label>Password</label><br />
                 <input type="password" value={this.state.password} onChange={this.onChangePassword} /><br /><br />
-                <input type="submit" value="Registrate" onClick={this.handleButtonClick} />
-                <input type="submit" value="Login" onClick={this.handleButtonClick} />
+                <input type="submit" value="Registrate" />
+                <input type="submit" value="Login" />
                 <p className='message'>{this.state.message}</p>
             </form >
         );
