@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 // import ReactDOM from "react-dom";
-
 import '../styles/RegLogForm.css';
-
-const  USER_URL = '/users';
 
 class RegLogForm extends Component {
     constructor(props) {

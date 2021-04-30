@@ -19,8 +19,14 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/resources/index.html');
 });
 
-// Когда клиент соединяется, выводим сообщение в консоль
+// Клиент соединился
 io.sockets.on('connection', function (socket) {
     print('A client is connected!');
 
+    socket.on('messages', ()=>{
+        print('А че в смысле');
+        socket.emit('messages', {sender:'John', text:'Hello, world!', ddtt:new Date()});
+    });
+
+    
 });
