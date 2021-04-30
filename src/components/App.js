@@ -3,8 +3,7 @@ import RegLogForm from "./RegLogForm.js";
 import Message from "./Message"
 import socket from "./socket";
 
-socket.on('eventClient', function (data) {
-    console.log(data);});
+
 
 class App extends Component {
     constructor(props){
@@ -19,6 +18,13 @@ class App extends Component {
 
     getUser(aUser){
       this.setState({user:aUser, status:'user'});
+    }
+
+    componentDidMount(){
+      console.log('А че в смысле');
+      socket.on('messages', data => {
+        console.log(data);
+      });
     }
 
     render(){
