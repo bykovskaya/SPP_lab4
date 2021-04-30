@@ -21,9 +21,9 @@ class App extends Component {
     }
 
     componentDidMount(){
-      console.log('А че в смысле');
-      socket.on('messages', data => {
-        console.log(data);
+        socket.emit('messages');
+        socket.on('messages', data => {
+        console.log("tut", data);
       });
     }
 
