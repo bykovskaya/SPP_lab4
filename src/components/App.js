@@ -21,10 +21,11 @@ class App extends Component {
     }
 
     componentDidMount(){
-        socket.emit('messages');
-        socket.on('messages', data => {
-        console.log("tut", data);
-      });
+      // socket.emit('messages');
+      // socket.on('messages', data => {
+      //   this.setState({msgs:data});
+      //   //console.log(data);
+      // });
     }
 
     render(){
