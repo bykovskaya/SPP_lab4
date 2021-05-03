@@ -108,21 +108,45 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('registrate', (data)=>{
-        print('new user', data.login, data.password);
-        let args = [];
+        print('registrate', data.login, data.password);
+        let args = [data.login];
 
-        // addUser(args)
-        // .then(()=>{
-        //     print('user added');
-        //     socket.emit('registrate', )
-        // })
-        // .catch(err=>{
-        //     print(err);
-        // })
+        bcrypt.hash(data.password, 10, (err, hashedPassword) => {
+            if (err) {
+                console.log(err);
+                socket.emit('registrate', { message: 'Password encription error'});
+            }
+            else {
+                args.push(hashedPassword);
+                addUser(args)
+                .then ( ()   => { socket.emit('registrate', { message: 'You are registred!' })})
+                .catch((err) => { socket.emit('registrate', { message: 'Registration error', data:err })});
+            }
+        })
     })
 
     socket.on('login', (data)=>{
-        print('new user', data);
-        let args = [];
+        print('login', data);
+
+        getUser(data.login)
+        .then(res => {
+            bcrypt.compare(res.password, data.password, (err, equal) => {
+                if (err) {
+                    console.log(err);
+                    socket.emit('login', { message: 'Invalid password.' });
+                }
+                else {
+                    let token = '';
+                    const accessTocken = jwt.sign(token, TOKEN_KEY);
+                    console.log(accessTocken);
+                    socket.emit('login', { message: 'Welcome!', id: res.id, login: res.login });
+                }
+            })
+        })
+        .catch(err => {
+            socket.emit('login', { message: err });
+        });
+
+        
     })
 });
