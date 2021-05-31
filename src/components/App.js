@@ -1,9 +1,7 @@
-import React, { Component } from "react";
-import RegLogForm from "./RegLogForm.js";
-import Message from "./Message"
-import socket from "./socket";
-
-
+import React, { Component } from 'react';
+import RegLogForm from './RegLogForm.js';
+import Chat from './Chat';
+import Header from './Header';
 
 class App extends Component {
     constructor(props){
@@ -11,32 +9,32 @@ class App extends Component {
         this.state = {
             status: 'guest',
             user:{},
-            msgs:[]
         }
-        this.getUser = this.getUser.bind(this);
+        this.setUser = this.setUser.bind(this);
+        this.logout = this.logout.bind(this);
     }
 
-    getUser(aUser){
+    setUser(aUser){
       this.setState({user:aUser, status:'user'});
     }
-
-    componentDidMount(){
-      // socket.emit('messages');
-      // socket.on('messages', data => {
-      //   this.setState({msgs:data});
-      //   //console.log(data);
-      // });
+    
+    logout(){
+      this.setState({user:{}, status:'guest'});
     }
 
     render(){
+      if(this.state.status == 'guest'){
         return <div>
-          <div className='reglog'><RegLogForm onLogin={this.getUser}/></div>
-          <div className='chat'>{
-            this.state.msgs.map((msg, i)=>{
-                return <Message key={i} data={msg} />
-            })
-          }</div>
+          <Header status={this.state.status} user={this.state.user} logout={this.logout}/>
+          <div className='reglog'><RegLogForm setUser={this.setUser}/></div>
+        </div>
+      }
+      else{
+        return <div>
+          <Header status={this.state.status} user={this.state.user} logout={this.logout}/>
+          <Chat sender={this.state.user}/>
           </div>
+      }
     }
 }
 

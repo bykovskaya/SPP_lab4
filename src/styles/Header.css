@@ -1,0 +1,17 @@
+.header{
+    background: aqua;
+    /* margin-top: 16px; */
+    padding-bottom: 16px;
+
+}
+
+ul {
+    list-style: none; /*убираем маркеры списка*/
+    margin: 0; /*убираем отступы*/
+    padding: 16px;
+  }
+  
+  li {
+    float:left; /*Размещаем список горизонтально для реализации меню*/
+    margin-right:5px; /*Добавляем отступ у пунктов меню*/
+  }

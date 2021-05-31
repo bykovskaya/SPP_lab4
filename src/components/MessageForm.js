@@ -15,7 +15,9 @@ class MessageForm extends Component{
 
     sendMessage(e){
         e.preventDefault();
-        console.log('send msg');
+        let dd = new Date();
+        console.log(this.state.text, this.props.sender.login, `${dd.getFullYear()}-${dd.getMonth()}-${dd.getDate()}`, dd.getHours()+":"+dd.getMinutes());
+        this.setState({text:''});
     }
     
     render(){
