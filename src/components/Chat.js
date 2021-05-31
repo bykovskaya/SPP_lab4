@@ -15,11 +15,16 @@ class Chat extends Component{
     getMessages(){
         socket.on('message', (msg)=>{
             let t_msgs = this.state.msgs;
+            console.log(msg);
             t_msgs.push(msg);
             this.setState({msgs: t_msgs});
         })
     }
 
+    componentDidMount(){
+        this.getMessages();
+    }
+    
     render(){
         return <div className='chat'>
         {this.state.msgs.map((msg, i)=>{
@@ -29,5 +34,7 @@ class Chat extends Component{
         </div>
     }
 }
+
+
 
 export default Chat;

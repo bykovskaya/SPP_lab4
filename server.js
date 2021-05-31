@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended: true}));
 
 
 /*******************************/
-const {getMsgs, putMsgs, deleteMsg, addUser, getUser} = require('./dbfunctions.js');
+// const {getMsgs, putMsgs, deleteMsg, addUser, getUser} = require('./dbfunctions.js');
 
 const jsonParser = express.json();
 
@@ -35,12 +35,13 @@ app.post('/reg', jsonParser, (req, res)=>{
                 return res.status(400).json({ message: 'error is occured' })
             }
             else {
-                addUser([req.body.login, hashedPassword]).then(()=>{
-                    res.status(201).json({ message: 'Вы зарегестрированы!' })
-                }).catch((err)=>{
-                    res.status(400).send(err);
-                    console.log(err);
-                })
+                // addUser([req.body.login, hashedPassword]).then(()=>{
+                //     res.status(201).json({ message: 'Вы зарегестрированы!' })
+                // }).catch((err)=>{
+                //     res.status(400).send(err);
+                //     console.log(err);
+                // })
+                res.status(201).json({ message: 'Вы зарегестрированы!' })
             }
         })
     } catch{

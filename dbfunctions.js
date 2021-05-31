@@ -1,6 +1,8 @@
 /*******************************************************/
 /*************************DB****************************/
 /*******************************************************/
+
+/*
 const mysql = require("mysql2");
 const DBconnection = mysql.createConnection({
     host: "localhost",
@@ -77,4 +79,6 @@ let addUser = (args) => {
 }
 
 module.exports = {getMsgs, putMsgs, deleteMsg, addUser, getUser}; 
+
+*/
 /*******************************************************/

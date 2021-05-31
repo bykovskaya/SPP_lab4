@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import socket from './socket';
 
 class MessageForm extends Component{
     constructor(props) {
@@ -16,8 +17,18 @@ class MessageForm extends Component{
     sendMessage(e){
         e.preventDefault();
         let dd = new Date();
-        console.log(this.state.text, this.props.sender.login, `${dd.getFullYear()}-${dd.getMonth()}-${dd.getDate()}`, dd.getHours()+":"+dd.getMinutes());
-        this.setState({text:''});
+        if(this.state.text !== '')
+        {
+            // console.log(this.state.text, this.props.sender.login, `${dd.getFullYear()}-${dd.getMonth()}-${dd.getDate()}`, dd.getHours()+":"+dd.getMinutes());
+
+            socket.emit('message', {
+                text:this.state.text, 
+                sender:this.props.sender.login, 
+                date:`${dd.getFullYear()}-${dd.getMonth()}-${dd.getDate()}`, 
+                time:dd.getHours()+":"+dd.getMinutes()
+            })
+            this.setState({text:''});
+        }
     }
     
     render(){
