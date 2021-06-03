@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import '../styles/Message.css';
 
 class Message extends Component{
     constructor(props){
@@ -17,11 +18,10 @@ class Message extends Component{
     }
 
     render(){
-        return <div id={this.props.data.id} onDoubleClick={this.callSubMenu}>
-            <label>{this.props.data.sender}</label>
+        return <div id={this.props.data.id} onDoubleClick={this.callSubMenu} className={this.props.data.sender == this.props.user.login ? "mymessage":"message"}>
+            <h4>{this.props.data.sender}</h4>
             <p>{this.props.data.text}</p>
-            <p>{this.props.data.date}</p>
-            <p>{this.props.data.time}</p>
+            <p>{this.props.data.date} {this.props.data.time}</p>
         </div>
     }
 }

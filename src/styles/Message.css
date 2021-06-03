@@ -1,0 +1,15 @@
+.message{
+    background-color: aquamarine;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    word-wrap: break-word;
+}
+
+.mymessage{
+    background-color:rgb(208, 128, 240) ;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    word-wrap: break-word;
+}

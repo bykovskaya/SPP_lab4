@@ -28,7 +28,7 @@ class Chat extends Component{
     render(){
         return <div className='chat'>
         {this.state.msgs.map((msg, i)=>{
-            return <Message key={i} data={msg} />
+            return <Message key={i} data={msg} user={this.props.sender}/>
         })}
         <div><MessageForm sender={this.props.sender}/></div>
         </div>

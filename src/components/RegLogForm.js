@@ -68,7 +68,7 @@ class RegLogForm extends Component {
                 <input type="password" value={this.state.password} onChange={this.onTypePassword} /><br /><br />
                 <input type="submit" value="Registrate" onClick={this.onReg} />
                 <input type="submit" value="Login"  onClick={this.onLogin}/>
-                <p className='message'>{this.state.message}</p>
+                <p className='info'>{this.state.message}</p>
             </form >
         );
     }
