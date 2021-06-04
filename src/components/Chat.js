@@ -10,6 +10,7 @@ class Chat extends Component{
             msgs:[]
         }
         this.getMessages = this.getMessages.bind(this);
+        socket.emit('init dialog', ()=>{});
     }
 
     getMessages(){
@@ -22,6 +23,10 @@ class Chat extends Component{
     }
 
     componentDidMount(){
+        socket.on('init dialog', (amsgs)=>{
+            console.log(amsgs);
+            this.setState({msgs:amsgs});
+        })
         this.getMessages();
     }
     

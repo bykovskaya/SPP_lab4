@@ -2,7 +2,7 @@
 /*************************DB****************************/
 /*******************************************************/
 
-/*
+
 const mysql = require("mysql2");
 const DBconnection = mysql.createConnection({
     host: "localhost",
@@ -19,7 +19,7 @@ DBconnection.connect((err) => {
 });
 
 let getMsgs = () => {
-    let sql = "select * from Message";
+    let sql = "select id, text, DATE_FORMAT(date, '%Y-%m-%d') as date, TIME_FORMAT(time, '%H:%i') as time, sender, file as fileName from Message";
     return new Promise(function(resolve, reject){
         DBconnection.query(sql, (err, result)=>{
             if(err) 
@@ -31,9 +31,9 @@ let getMsgs = () => {
 }
 
 let putMsgs = (args) => {
-    let sql = "inssert into Message(text, date, time, user_id) values (?, ?, ?, ?)";
+    let sql = "insert into Message(text, date, time, sender, file) values (?, ?, ?, ?, ?)";
     return new Promise(function(resolve, reject){
-        DBconnection.query(sql, srgs, (err, result)=>{
+        DBconnection.query(sql, args, (err, result)=>{
             if(err) 
                 reject(err);
             else
@@ -55,13 +55,13 @@ let deleteMsg = (id) => {
 }
 
 let getUser = (aLogin) => {
-    let sql = "select from user where login = ?";
+    let sql = "select * from user where login = ?";
     return new Promise((resolve, reject)=>{
         DBconnection.query(sql, aLogin, (err, res)=>{
             if(err)
                 reject(err);
             else
-                resolve(res);
+                resolve(res[0]);
         })
     })
 }
@@ -80,5 +80,5 @@ let addUser = (args) => {
 
 module.exports = {getMsgs, putMsgs, deleteMsg, addUser, getUser}; 
 
-*/
+
 /*******************************************************/

@@ -34,8 +34,13 @@ class RegLogForm extends Component {
             let r_status = resp.status;
             resp.json()
             .then(data => {
-                console.log(r_status, data);
-                this.props.setUser(data);
+                if(r_status < 400 && r_status >= 200 )
+                {
+                    console.log(data);
+                    this.props.setUser(data);
+                }
+                else
+                {this.setState({message:data.message})}
             })
         })
         .catch(err => { console.log(err)})
@@ -52,7 +57,7 @@ class RegLogForm extends Component {
             let r_status = resp.status;
             resp.json()
             .then(data => {
-                console.log(r_status, data);
+                this.setState({message:data.message})
             })
         })
         .catch(err => { console.log(err)})

@@ -36,6 +36,8 @@
     "socket.io": "^4.0.1",
     "socket.io-client": "^4.0.1",
     "socket.io-stream": "^0.5.3",
-    "socketio-jwt": "^4.6.2"
+    "socketio-jwt": "^4.6.2",
+    "stream-browserify": "^3.0.0",
+    "util": "^0.12.4"
   }
 }
